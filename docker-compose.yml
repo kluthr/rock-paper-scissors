@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=app
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=8000
+    command: "flask run"
+    depends_on:
+      - redis
+
+  redis:
+    image: arm64v8/redis:6.2
+    ports:
+      - "6379:6379"
+
+  tests:
+    build:
+      context: .
+    volumes:
+      - ./app:/app
+    command: "pytest"

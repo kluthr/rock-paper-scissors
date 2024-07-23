@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Rock Paper Scissors Game!</title>
+</head>
+
+<body>
+    <br>
+    <div id="play">
+        <h3>Inputs</h3>
+        <form method="post">
+            <label id="name_1">Player 1's Name:</label>
+            <input type="text" name="name_1" required>
+            <br>
+            <label id="name_2">Player 2's Name:</label>
+            <input type="text" name="name_2" required>
+            <br>
+            <label id="move_1">Player 1's Move:</label>
+            <input type="text" name="move_1" required>
+            <br>
+            <label id="move_2">Player 2's Move:</label>
+            <input type="text" name="move_2" required>
+            <br>
+            <button type="submit" name="btn" value="play">Play!</button>
+        </form>
+    {% if results %}
+    <div id="resultsbox">
+        <h2>Results</h2>
+        <br>
+        {{results}}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+
+</html>
