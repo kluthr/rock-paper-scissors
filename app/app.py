@@ -4,11 +4,7 @@ import routes
 
 
 def create_app():
-    """
-    Create the flask app and register all routes
-
-    Configurations would go here in a more complex app
-    """
+    # create flask app and register all routes
     app = Flask(__name__, template_folder="templates")
     routes.init_app(app)
     return app

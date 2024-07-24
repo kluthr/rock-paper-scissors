@@ -1,5 +1,4 @@
 from index import index
-from play import play
 
 
 def init_app(app):

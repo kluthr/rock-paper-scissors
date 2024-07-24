@@ -1,8 +1,9 @@
 from flask import render_template, request
 
-from play import play
+from rps_game import RPSGame
 
 
+# TODO auth
 def index():
     if request.method == "GET":
         return render_template("index.html")
@@ -13,5 +14,6 @@ def index():
             "move_1": request.form.get("move_1"),
             "move_2": request.form.get("move_2"),
         }
-        results = play(data)
+        game = RPSGame(data)
+        results = game.play()
         return render_template("index.html", results=results)

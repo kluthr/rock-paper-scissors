@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Rock Paper Scissors Game!</title>
 </head>
 
@@ -14,23 +13,45 @@
             <label id="name_1">Player 1's Name:</label>
             <input type="text" name="name_1" required>
             <br>
+            <label for="move_1">Player 1's Move:</label>
+            <select name="move_1" id="move_1">
+                <option value="Rock">Rock</option>
+                <option value="Paper">Paper</option>
+                <option value="Scissors">Scissors</option>
+            </select>
+            <br>
+            <br>
             <label id="name_2">Player 2's Name:</label>
             <input type="text" name="name_2" required>
             <br>
-            <label id="move_1">Player 1's Move:</label>
-            <input type="text" name="move_1" required>
+            <label for="move_2">Player 2's Move:</label>
+            <select name="move_2" id="move_2">
+                <option value="Rock">Rock</option>
+                <option value="Paper">Paper</option>
+                <option value="Scissors">Scissors</option>
+            </select>            
             <br>
-            <label id="move_2">Player 2's Move:</label>
-            <input type="text" name="move_2" required>
             <br>
             <button type="submit" name="btn" value="play">Play!</button>
         </form>
     {% if results %}
     <div id="resultsbox">
-        <h2>Results</h2>
+        <h3>Results</h3>
         <br>
-        {{results}}
-        </ul>
+        {% if results.winner %}
+            {{results.winner}} wins!
+        {% else %}
+            Tie game!
+        {% endif %}
+        <br>
+        <br>
+        Current stats:
+        <br>
+        {{results.history.player_1.name}} has {{results.history.player_1.wins}} wins
+        <br>
+        {{results.history.player_2.name}} has {{results.history.player_2.wins}} wins
+        <br>
+        {{results.history.ties}} tie games
     </div>
     {% endif %}
 </body>
