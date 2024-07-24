@@ -1,9 +1,11 @@
 import json
 
-from redis_client import redis_client
+from app.redis_client import redis_client
 
 
 class RPSGame:
+    """Handles playing of one RPS game and saving/updating results in Redis"""
+
     def __init__(self, data: dict):
         self.data = data
         self.redis_key = f"{self.data['name_1']}:{self.data['name_2']}"

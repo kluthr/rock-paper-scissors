@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
 
+    const options = Array("Rock", "Paper", "Scissors");
+
+    function setRandomChoice() {
+        var randomChoice = options[Math.floor(Math.random() * 3)];
+        console.log(randomChoice)
+        $('#move_2').val(randomChoice);
+        $('#name_2').val("Computer");
+    }
+
+    function handleComputerCheck() {
+        if (document.getElementById('computer').checked) {
+            setRandomChoice();
+            $('#player_2').hide();
+        } else {
+            $('#move_2').val("Rock");
+            $('#name_2').val(null);
+            $('#player_2').show()
+        }
+    }
+
+    function hideMove(target) {
+        $(target).hide();
+    }
+</script>
 <head>
     <title>Rock Paper Scissors Game!</title>
 </head>
@@ -15,21 +41,27 @@
             <br>
             <label for="move_1">Player 1's Move:</label>
             <select name="move_1" id="move_1">
-                <option value="Rock">Rock</option>
-                <option value="Paper">Paper</option>
-                <option value="Scissors">Scissors</option>
+                <option onclick="hideMove('#move_1');" value="Rock">Rock</option>
+                <option onclick="hideMove('#move_1');" value="Paper">Paper</option>
+                <option onclick="hideMove('#move_1');" value="Scissors">Scissors</option>
             </select>
             <br>
             <br>
-            <label id="name_2">Player 2's Name:</label>
-            <input type="text" name="name_2" required>
+            <input type="checkbox" id="computer" name="computer" onchange="handleComputerCheck();">
+            <label for="computer">Play against the Computer</label>
             <br>
-            <label for="move_2">Player 2's Move:</label>
-            <select name="move_2" id="move_2">
-                <option value="Rock">Rock</option>
-                <option value="Paper">Paper</option>
-                <option value="Scissors">Scissors</option>
-            </select>            
+            <br>
+            <div id="player_2">
+                <label>Player 2's Name:</label>
+                <input type="text" name="name_2" id="name_2" required>
+                <br>
+                <label>Player 2's Move:</label>
+                <select name="move_2" id="move_2">
+                    <option onclick="hideMove('#move_2');" value="Rock">Rock</option>
+                    <option onclick="hideMove('#move_2');" value="Paper">Paper</option>
+                    <option onclick="hideMove('#move_2');" value="Scissors">Scissors</option>
+                </select> 
+            </div> 
             <br>
             <br>
             <button type="submit" name="btn" value="play">Play!</button>
@@ -39,14 +71,13 @@
         <h3>Results</h3>
         <br>
         {% if results.winner %}
-            {{results.winner}} wins!
+            <b>{{results.winner}} wins!</b>
         {% else %}
-            Tie game!
+            <b>Tie game!</b>
         {% endif %}
         <br>
         <br>
-        Current stats:
-        <br>
+        <h4>Current stats:</h4>
         {{results.history.player_1.name}} has {{results.history.player_1.wins}} wins
         <br>
         {{results.history.player_2.name}} has {{results.history.player_2.wins}} wins

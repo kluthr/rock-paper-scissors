@@ -5,9 +5,11 @@ from rps_game import RPSGame
 
 # TODO auth
 def index():
+    """Serves main gameplay page in the browser"""
     if request.method == "GET":
         return render_template("index.html")
     elif request.method == "POST":
+        # TODO make sure input data is safe
         data = {
             "name_1": request.form.get("name_1"),
             "name_2": request.form.get("name_2"),
