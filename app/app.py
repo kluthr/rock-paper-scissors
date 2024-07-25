@@ -1,12 +1,12 @@
 from flask import Flask
 
-import routes
+from app.routes import init_app
 
 
 def create_app():
     # create flask app and register all routes
     app = Flask(__name__, template_folder="templates")
-    routes.init_app(app)
+    init_app(app)
     return app
 
 

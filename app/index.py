@@ -1,6 +1,6 @@
 from flask import render_template, request
 
-from rps_game import RPSGame
+from app.rps_game import RPSGame
 
 
 # TODO auth

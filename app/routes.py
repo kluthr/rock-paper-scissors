@@ -1,4 +1,4 @@
-from index import index
+from app.index import index
 
 
 def init_app(app):
